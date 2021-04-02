@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+#include <string>
+using namespace std;
+
+#define FREP(i,a,b) for(long long i=a;i<b;i++)
+#define REP(i,n) FREP(i,0,n)
+#define PB push_back
+#define ll long long
+#define MP make_pair
+#define mod 1000000007
+#define endl "\n"
+#define vi vector<ll>
+#define si set<ll>
+#define mi map<ll,ll>
+#define bs binary_search
+#define pri(a,n) REP(i,n)cout<<a[i]<<" ";
+#define all(x) x.begin(),x.end()
+#define sz(a) (ll)a.size()
+#define sa(a,n) sort(a,a+n)
+#define sra(a,n) sort(a,a+n,greater<ll>())
+#define sv(v) sort(all(v))
+#define srv(v) sort(v.rbegin(),v.rend())
+#define sp(x) fixed<<setprecision(x)
+#define mem(a) memset(a,-1,sizeof(a))
+#define ff first
+#define ss second
+#define deb(x) cout<<#x<<' '<<x<<endl;
+#define FASTIO ios_base::sync_with_stdio(false);\
+               cin.tie(NULL);\
+               cout.tie(NULL);
+               
+               
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+    float k1,k2,k3,v;
+    cin>>k1>>k2>>k3>>v;
+    
+    float s;
+    s=k1*k2*k3*v;
+    
+    float ans;
+    ans=100/s;
+    
+    ans=100*ans;
+    ans=ans+0.5;
+    
+    ans=ans/100;
+    
+    if(ans<9.58)
+    cout<<"YES"<<endl;
+    else
+    cout<<"NO"<<endl;
+    }
+    
+}
