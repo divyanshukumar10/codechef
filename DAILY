@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int factorial(int n)
+{
+    if (n == 1 || n == 0)
+    {
+        return 1;
+    }
+    else
+        return n * factorial(n-1);
+}
+
+int permut(int f, int x)
+{
+    return factorial(f)/((factorial(f-x)) * factorial(x));
+}
+
+int main() {
+	
+	int x, n;
+	cin >> x >> n;
+	int ans = 0;
+	
+	string arr[n];
+	
+	for(int i = 0; i < n; i++)
+	{
+	    cin >> arr[i];
+	}
+	
+	for (int i = 0; i < n; i++) // iterating over strings
+	{
+	    for (int j= 0, j2 = 53; j < 36; j+=4, j2-=2) // iterating over compartments
+	    {
+	        //cout << j  << " " <<  j2 << endl;
+	        int freep = 0;
+	        for(int s = 0; s < 4; s++)
+	        {
+	            if(arr[i][s+j] == '0')
+	            {
+	                freep++;
+	            }
+	        }
+	        
+	        if(arr[i][j2] == '0') freep++;
+	        if(arr[i][j2-1] == '0') freep++;
+	        
+	        if(freep >= x)
+	        {
+	            ans+= permut(freep, x);
+	        }
+	    }
+	}
+	
+    cout << ans;
+	return 0;
+}
