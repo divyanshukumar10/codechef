@@ -1,0 +1,103 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define N 1000005
+#define pb push_back
+#define all(f) f.begin(), f.end()
+#define nl "\n"
+#define debug(g) cout << #g << " : " << g << nl
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int, int> pii;
+const ll mod = (1e9) + 7;
+const double pi = acos(-1);
+ll gcd(ll a, ll b) { return (b == 0) ? a : gcd(b, a % b); }
+ll lcm(ll a, ll b) { return (a * b) / gcd(a, b); }
+void solve()
+{
+    int n, m, a[101][101], i, j, num, mx = INT_MIN;
+    cin >> n >> m;
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= m; j++)
+        {
+            cin >> a[i][j];
+            mx = max(mx, a[i][j]);
+        }
+    }
+    if (mx == -1)
+    {
+        for (i = 1; i <= n; i++)
+        {
+            for (j = 1; j <= m; j++)
+                cout << "1 ";
+            cout << nl;
+        }
+        return;
+    }
+    num = mx;
+    for (i = n, j = m; j >= 1; j--)
+    {
+        if (a[i][j] == -1)
+            a[i][j] = num;
+        else
+            num = a[i][j];
+    }
+    for (i = n - 1; i >= 1; i--)
+    {
+        num = a[i + 1][m];
+        for (j = m; j >= 1; j--)
+        {
+            num = min(num, a[i + 1][j]);
+            if (a[i][j] == -1)
+                a[i][j] = num;
+            else
+                num = a[i][j];
+        }
+    }
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j < m; j++)
+        {
+            if (a[i][j] > a[i][j + 1])
+            {
+                cout << "-1" << nl;
+                return;
+            }
+        }
+    }
+    for (j = 1; j <= m; j++)
+    {
+        for (i = 1; i < n; i++)
+        {
+            if (a[i][j] > a[i + 1][j])
+            {
+                cout << "-1" << nl;
+                return;
+            }
+        }
+    }
+    for (i = 1; i <= n; i++)
+    {
+        for (j = 1; j <= m; j++)
+            cout << a[i][j] << " ";
+        cout << nl;
+    }
+}
+int main()
+{
+    //fast io
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+    ll t = 1;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    return 0;
+}
